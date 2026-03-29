@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>A Face Escondida — Página de Vendas</title>
+  <style>
+    body{margin:0;font-family:Arial;background:#050505;color:#fff}
+    .container{width:90%;max-width:1100px;margin:auto}
+    h1{font-size:42px}
+    .hero{text-align:center;padding:40px 0}
+
+    .btn{
+      background:#fff;
+      color:#000;
+      padding:14px 24px;
+      border-radius:10px;
+      font-weight:bold;
+      display:inline-block;
+      margin-top:20px;
+      text-decoration:none;
+      animation:pulseBtn 1.8s infinite;
+    }
+
+    @keyframes pulseBtn{
+      0%{transform:scale(1)}
+      50%{transform:scale(1.05)}
+      100%{transform:scale(1)}
+    }
+
+    .price{
+      margin-top:15px;
+      font-size:22px;
+      font-weight:bold;
+      color:#00ff6a;
+    }
+
+    .cover img{width:260px;border-radius:20px;box-shadow:0 10px 40px rgba(0,0,0,.6)}
+    .online{margin-top:15px;font-size:14px;color:#aaa}
+    .dot{height:10px;width:10px;background:#00ff6a;border-radius:50%;display:inline-block;margin-right:6px;animation:pulse 1.5s infinite}
+    @keyframes pulse{0%{opacity:1}50%{opacity:.3}100%{opacity:1}}
+    .section{padding:40px 0}
+    .card{background:#0d0d0d;padding:20px;border-radius:16px;margin-bottom:20px}
+    .testimonials{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+
+    .notify{
+      position:fixed;
+      bottom:20px;
+      left:20px;
+      background:#111;
+      border:1px solid #222;
+      padding:14px 18px;
+      border-radius:12px;
+      font-size:14px;
+      color:#ddd;
+      box-shadow:0 10px 30px rgba(0,0,0,.5);
+      opacity:0;
+      transform:translateY(20px);
+      transition:.4s;
+      z-index:999;
+    }
+
+    .notify.show{
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    .urgency{
+      background:#111;
+      border-top:1px solid #222;
+      border-bottom:1px solid #222;
+      text-align:center;
+      padding:10px;
+      font-size:14px;
+      color:#bbb;
+    }
+
+    @media(max-width:700px){.testimonials{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+
+<div class="urgency">
+  ⚠️ Alta procura agora — acesso pode ficar indisponível a qualquer momento
+</div>
+
+<div class="hero container">
+  <h1>Existe algo dentro de você que você evita encarar.</h1>
+  <p>Esse livro vai mexer com sua mente do começo ao fim.</p>
+
+  <div class="cover">
+    <img src="img.png" alt="capa">
+  </div>
+
+  <div class="price">Apenas R$ 9,90</div>
+
+  <div class="online">
+    <span class="dot"></span>
+    <span id="viewerCount">32</span> pessoas vendo agora
+  </div>
+
+  <a href="#" class="btn">Quero ler agora</a>
+</div>
+
+<div class="section container">
+  <h2>O que as pessoas estão dizendo:</h2>
+
+  <div class="testimonials">
+    <div class="card">
+      <strong>Lucas Almeida Ferreira</strong>
+      <p>"Eu achei que era só mais um livro... mas me deixou desconfortável de um jeito estranho. Muito bom."</p>
+    </div>
+
+    <div class="card">
+      <strong>Mariana Costa Ribeiro</strong>
+      <p>"Li em uma noite. Sério, não consegui parar. Fiquei pensando nisso depois."</p>
+    </div>
+
+    <div class="card">
+      <strong>Rafael Henrique Gomes</strong>
+      <p>"Tem algo nesse livro que prende demais. Parece que fala com você."</p>
+    </div>
+
+    <div class="card">
+      <strong>Juliana Martins Souza</strong>
+      <p>"Não é uma leitura comum. É pesado… mas ao mesmo tempo viciante."</p>
+    </div>
+  </div>
+</div>
+
+<div class="section container" style="text-align:center">
+  <h2>Pronto para sentir isso?</h2>
+  <div class="price">Apenas R$ 9,90</div>
+  <a href="#" class="btn">Comprar agora</a>
+</div>
+
+<div id="notify" class="notify"></div>
+
+<script>
+let count = 32;
+function updateViewers(){
+  const change = Math.random() < 0.5 ? -1 : 1;
+  count += change;
+  if(count < 27) count = 29;
+  if(count > 41) count = 38;
+  document.getElementById('viewerCount').innerText = count;
+}
+setInterval(updateViewers,4000);
+
+const names = [
+"Lucas Almeida Ferreira","Mariana Costa Ribeiro","Rafael Henrique Gomes","Juliana Martins Souza","Carlos Eduardo Mendes","Fernanda Alves Rocha","Bruno Oliveira Santos","Patrícia Lima Cardoso","Diego Martins Carvalho","Camila Rodrigues Souza",
+"André Luiz Barbosa","Beatriz Fernandes Costa","Gustavo Henrique Lima","Aline Pereira Santos","Rodrigo Alves Mendes","Carla Nunes Rocha","Felipe Souza Martins","Larissa Gomes Ribeiro","Daniel Costa Silva","Renata Oliveira Dias",
+"Thiago Martins Rocha","Paula Fernandes Lima","Eduardo Barbosa Santos","Natália Costa Mendes","Vitor Hugo Alves","Amanda Rodrigues Lima","Caio Ferreira Gomes","Bianca Souza Rocha","Leandro Oliveira Costa","Vanessa Martins Dias",
+"Igor Fernandes Silva","Priscila Almeida Rocha","Ricardo Gomes Lima","Tatiane Costa Alves","Fernando Souza Mendes","Julio César Rocha","Monique Lima Santos","Bruna Costa Ribeiro","Marcelo Alves Dias","Simone Fernandes Lima",
+"Alexandre Gomes Rocha","Daniele Costa Silva","Fábio Mendes Lima","Cristiane Souza Alves","Rogério Fernandes Costa","Jéssica Lima Rocha","Henrique Alves Mendes","Luciana Costa Dias","Maurício Gomes Silva","Elaine Rocha Lima",
+"Sérgio Alves Costa","Kelly Fernandes Rocha","Robson Lima Mendes","Débora Costa Silva","Adriano Gomes Alves","Flávia Rocha Lima","Cláudio Fernandes Costa","Tânia Souza Mendes","Paulo Henrique Rocha","Rosana Lima Costa",
+"Wesley Gomes Silva","Neide Fernandes Rocha","Gilberto Costa Alves","Sandra Lima Mendes","César Rocha Silva","Marta Fernandes Costa","Renan Gomes Alves","Silvia Rocha Mendes","Douglas Lima Costa","Cíntia Fernandes Silva",
+"Márcio Rocha Alves","Valéria Costa Mendes","Otávio Lima Silva","Denise Fernandes Rocha","Jonas Gomes Costa","Sueli Rocha Alves","Alan Fernandes Mendes","Rita Lima Costa","Elias Gomes Silva","Ivone Rocha Mendes",
+"Noel Fernandes Costa","Vera Lima Alves","Hugo Rocha Mendes","Elisa Gomes Costa","Artur Fernandes Silva","Lúcia Rocha Alves","Breno Lima Mendes","Sônia Gomes Costa","Davi Fernandes Rocha","Irene Lima Alves"
+];
+let usedNames = [];
+let usedTimes = [];
+
+function getUniqueName(){
+  if(usedNames.length === names.length) usedNames = [];
+  let name;
+  do{name = names[Math.floor(Math.random()*names.length)];}
+  while(usedNames.includes(name));
+  usedNames.push(name);
+  return name;
+}
+
+function getUniqueTime(){
+  if(usedTimes.length >= 10) usedTimes = [];
+  let time;
+  do{time = Math.floor(Math.random()*9)+1;}
+  while(usedTimes.includes(time));
+  usedTimes.push(time);
+  return time;
+}
+
+function showNotification(){
+  const notify = document.getElementById('notify');
+  const name = getUniqueName();
+  const minutes = getUniqueTime();
+
+  const text = Math.random() < 0.5
+    ? `${name} acabou de comprar`
+    : `${name} comprou há ${minutes} min`;
+
+  notify.innerText = text;
+  notify.classList.add('show');
+
+  setTimeout(()=>{notify.classList.remove('show');},4000);
+}
+
+setInterval(showNotification,7000);
+</script>
+
+</body>
+</html>
